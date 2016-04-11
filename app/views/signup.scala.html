@@ -1,0 +1,25 @@
+@(signupForm:Form[(String,String,String,String)])(implicit flash:Flash,msg:Messages)
+@import helper._
+
+
+@views.html.main("SignUp"){
+
+@if(flash.get("error").isDefined){
+<div class="alert alert-danger" role="alert">
+    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+    <span class="sr-only">Error:</span>
+    @flash.get("error")
+</div>
+
+}
+@helper.form(action=routes.SignupController.signup){
+@helper.inputText(signupForm("email"),'placeholder->"Email",'class->"form-control")
+@helper.inputPassword(signupForm("password"),'placeholder->"Password",'class->"form-control")
+@helper.inputText(signupForm("name"),'placeholder->"Name",'class->"form-control")
+@helper.inputText(signupForm("mobile"),'placeholder->"Mobile",'class->"form-control")
+<center>
+    <input class="btn btn-primary" type="submit" value="Register"/>
+    <br>
+</center>
+}
+}

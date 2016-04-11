@@ -1,0 +1,27 @@
+@(loginForm:Form[(String,String)])(implicit flash:Flash,msg:Messages)
+@import helper._
+@views.html.main("Login"){
+@if(flash.get("error").isDefined){
+<div class="alert alert-danger" role="alert">
+    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+    <span class="sr-only">Error:</span>
+    @flash.get("error")
+</div>
+
+}
+@if(flash.get("success").isDefined){
+<div class="alert alert-success" role="alert">
+    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+    <span class="sr-only">Error:</span>
+    @flash.get("success")
+</div>
+}
+@helper.form(action=routes.LoginController.validate){
+@helper.inputText(loginForm("email"),'placeholder->"Email",'class->"form-control")
+@helper.inputPassword(loginForm("password"),'placeholder->"Password",'class->"form-control")
+<center>
+    <input class="btn btn-primary" type="submit" value="LogIn"/>
+    <br>
+</center>
+}
+}
